@@ -28,7 +28,6 @@ public:
                         break;
                     }
                     checkStr += s[c];
-                    
                 }
                 if(checkStr.length() > MaxSubStr.length())
                 {
