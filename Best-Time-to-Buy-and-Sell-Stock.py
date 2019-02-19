@@ -5,11 +5,11 @@ class Solution(object):
         :rtype: int
         """
         import sys
-        min_profit = sys.maxint
+        min_price = sys.maxint
         max_profit = 0
-        for i, p in enumerate(prices):
-            if prices[i] < min_profit:
-                min_profit = prices[i]
-            elif (prices[i] - min_profit) > max_profit:
-                max_profit = prices[i] - min_profit
-        return max_profit         
+        for i, cur_price in enumerate(prices):
+            if cur_price < min_price:
+                min_price = cur_price
+            elif (cur_price - min_price) > max_profit:
+                max_profit = cur_price - min_price
+        return max_profit
