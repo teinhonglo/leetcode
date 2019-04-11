@@ -15,25 +15,32 @@ public:
 */
 class Solution {
 public:
-    int maxDepth(Node* root) {
-        if(root == nullptr) return 0;
-        stack<Node*> trav_tree;
-        Node* cur_node = root;
-        int max_depth = 1;
-        cur_node->val = 1;
-        // DFS
-        while(cur_node){
-            for(Node* chi_node : cur_node->children){
-                chi_node->val = cur_node->val + 1;
-                if(chi_node->val > max_depth){
-                    max_depth = chi_node->val;
-                }
-                trav_tree.push(chi_node);
-            }
-            if(trav_tree.empty()) break;
-            cur_node = trav_tree.top();
-            trav_tree.pop();
+    vector<int> po_vec;
+    vector<int> preorder(Node* root){
+        if(root == NULL) return po_vec;
+        /* recursive
+        po_vec.push_back(root->val);
+        
+        for(int i = 0; i < root->children.size(); i++){
+            preorder(root->children[i]);
         }
-        return max_depth;
+        return po_vec;
+        */
+        // iterative
+        vector<Node*> rec_vec;
+        Node* cn = root;
+        while(cn != NULL){
+            po_vec.push_back(cn->val);
+            for(int i = cn->children.size() - 1; i >= 0; i--){
+                rec_vec.push_back(cn->children[i]);
+            }
+            if(!rec_vec.empty()){
+                cn = rec_vec.back();
+                rec_vec.pop_back();
+            }else{
+                cn = NULL;
+            }
+        }
+        return po_vec;
     }
 };
